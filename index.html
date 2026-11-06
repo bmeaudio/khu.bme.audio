@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KHU BME Audio Archive</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #101d36;
+  --blue: #20385f;
+  --light: #f3f5f9;
+  --text: #17243b;
+  --muted: #778196;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--light);
+  color: var(--text);
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 35px 7% 55px;
+}
+
+.brand {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #b9c9e5;
+  direction: ltr;
+  text-align: right;
+}
+
+.hero {
+  max-width: 850px;
+  margin: 45px auto 0;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 6vw, 44px);
+  margin: 0 0 12px;
+}
+
+.hero p {
+  color: #c2cce0;
+  line-height: 2;
+  margin: 0;
+}
+
+main {
+  max-width: 1050px;
+  margin: -25px auto 0;
+  padding: 0 20px 50px;
+}
+
+.search {
+  width: 100%;
+  padding: 17px 20px;
+  border: 0;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  box-shadow: 0 5px 25px #14244212;
+}
+
+.section-title {
+  margin: 35px 0 16px;
+  font-size: 20px;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.category {
+  background: white;
+  border: 1px solid #e6eaf1;
+  border-radius: 14px;
+  padding: 20px 8px;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text);
+  transition: .2s;
+}
+
+.category:hover, .category.active {
+  background: var(--navy);
+  color: white;
+}
+
+.category span {
+  display: block;
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+.audio-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+}
+
+.audio-card {
+  background: white;
+  border: 1px solid #e7eaf0;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.audio-card h3 {
+  margin: 0 0 7px;
+  font-size: 16px;
+}
+
+.audio-card p {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0 0 16px;
+}
+
+audio {
+  width: 100%;
+  height: 38px;
+}
+
+.empty {
+  background: white;
+  padding: 35px 20px;
+  text-align: center;
+  border-radius: 15px;
+  color: var(--muted);
+  line-height: 2;
+  grid-column: 1 / -1;
+}
+
+footer {
+  background: var(--navy);
+  color: #c2cce0;
+  text-align: center;
+  padding: 25px 15px;
+  font-size: 12px;
+  line-height: 2;
+}
+
+@media(max-width:550px) {
+  .categories { grid-template-columns: repeat(2, 1fr); }
+  header { padding: 28px 22px 48px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">KHU BME | AUDIO ARCHIVE</div>
+  <div class="hero">
+    <h1>آرشیو صوتی مهندسی پزشکی</h1>
+    <p>
+      مجموعه‌ای از صداها، گفت‌وگوها، پادکست‌ها و
+      محتوای صوتی انجمن علمی مهندسی پزشکی
+      مؤسسه آموزش عالی خراسان
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="جست‌وجو در آرشیو صوتی..."
+  >
+
+  <h2 class="section-title">دسته‌بندی محتوا</h2>
+
+  <div class="categories">
+    <button class="category active" data-category="all">
+      <span>◈</span>همه فایل‌ها
+    </button>
+    <button class="category" data-category="magazine">
+      <span>▤</span>مجله‌ها
+    </button>
+    <button class="category" data-category="podcast">
+      <span>◉</span>پادکست‌ها
+    </button>
+    <button class="category" data-category="interview">
+      <span>◌</span>مصاحبه‌ها
+    </button>
+    <button class="category" data-category="event">
+      <span>⌁</span>رویدادها
+    </button>
+  </div>
+
+  <h2 class="section-title">فایل‌های صوتی</h2>
+
+  <div class="audio-list" id="audioList">
+    <div class="empty">
+      <div style="font-size:32px">♫</div>
+      <strong>به آرشیو صوتی خوش آمدید</strong>
+      <br>
+      فایل‌های صوتی به‌زودی در این بخش قرار می‌گیرند.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  KHU BME Audio Archive
+  <br>
+  انجمن علمی مهندسی پزشکی مؤسسه آموزش عالی خراسان
+</footer>
+
+<script>
+const audios = [];
+
+const categories = document.querySelectorAll('.category');
+const list = document.getElementById('audioList');
+const search = document.getElementById('search');
+
+let selected = 'all';
+
+function render() {
+  const filtered = audios.filter(item => {
+    const categoryMatch =
+      selected === 'all' || item.category === selected;
+
+    const searchMatch =
+      item.title.includes(search.value.trim()) ||
+      item.description.includes(search.value.trim());
+
+    return categoryMatch && searchMatch;
+  });
+
+  if (!filtered.length) {
+    list.innerHTML = `
+      <div class="empty">
+        هنوز فایلی در این دسته ثبت نشده است.
+      </div>`;
+    return;
+  }
+
+  list.innerHTML = filtered.map(item => `
+    <article class="audio-card">
+      <h3>${item.title}</h3>
+      <p>${item.description}</p>
+      <audio controls preload="none" src="${item.src}">
+        مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
+      </audio>
+    </article>
+  `).join('');
+}
+
+categories.forEach(button => {
+  button.addEventListener('click', () => {
+    categories.forEach(b => b.classList.remove('active'));
+    button.classList.add('active');
+    selected = button.dataset.category;
+    render();
+  });
+});
+
+search.addEventListener('input', render);
+render();
+</script>
+
+</body>
+</html>
